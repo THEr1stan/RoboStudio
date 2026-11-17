@@ -1,0 +1,61 @@
+{
+  "schema": "robostudio-scene-v1",
+  "name": "隔板避障转运",
+  "units": {
+    "length": "m",
+    "angle": "rad",
+    "mass": "kg"
+  },
+  "config": {
+    "robot": "r6",
+    "seed": 42,
+    "controller": "computed",
+    "solver": "dls",
+    "damping": 0.035,
+    "planner": "rrt_connect",
+    "trajectory": "quintic",
+    "task": "single",
+    "observation": "camera",
+    "gravity": 9.81,
+    "noise_mm": 0.0,
+    "dropout": 0.0,
+    "latency_ms": 0,
+    "retries": 1,
+    "destination": [
+      0.42,
+      0.2
+    ],
+    "objects": [
+      {
+        "color": "orange",
+        "shape": "box",
+        "xy": [
+          0.42,
+          -0.16
+        ],
+        "size": [
+          0.02,
+          0.02,
+          0.02
+        ],
+        "yaw": 0.0,
+        "mass": 0.045,
+        "friction": 1.2
+      }
+    ],
+    "obstacles": [
+      {
+        "xy": [
+          0.43,
+          0.015
+        ],
+        "size": [
+          0.035,
+          0.045,
+          0.115
+        ],
+        "yaw": 0.0
+      }
+    ]
+  }
+}

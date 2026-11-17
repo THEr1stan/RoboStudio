@@ -1,0 +1,7 @@
+{
+  "model": "fake-v1",
+  "inertia_kg_m2": 1.0,
+  "damping_Nm_s_per_rad": 0.1,
+  "integrator": "semi_implicit_euler",
+  "scope": "test double; no geometry, gravity, contacts or limits"
+}

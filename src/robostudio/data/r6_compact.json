@@ -1,0 +1,132 @@
+{
+  "api_version": "v1alpha1",
+  "robot_id": "r6_compact",
+  "family": "fixed_manipulator",
+  "frame_id": "world",
+  "qpos_size": 6,
+  "qvel_size": 6,
+  "ctrl_size": 6,
+  "capabilities": [
+    "joint_effort",
+    "cartesian_ik",
+    "joint_trajectory"
+  ],
+  "model": {
+    "path": "r6_compact.xml",
+    "format": "mjcf",
+    "sha256": "9842007ccad37dc2d87db0bd1f6c2815f61a0324ab31932fbdb0dbd2ddf314b1"
+  },
+  "joints": [
+    {
+      "name": "joint1",
+      "kind": "revolute",
+      "qpos_indices": [
+        0
+      ],
+      "qvel_indices": [
+        0
+      ]
+    },
+    {
+      "name": "joint2",
+      "kind": "revolute",
+      "qpos_indices": [
+        1
+      ],
+      "qvel_indices": [
+        1
+      ]
+    },
+    {
+      "name": "joint3",
+      "kind": "revolute",
+      "qpos_indices": [
+        2
+      ],
+      "qvel_indices": [
+        2
+      ]
+    },
+    {
+      "name": "joint4",
+      "kind": "revolute",
+      "qpos_indices": [
+        3
+      ],
+      "qvel_indices": [
+        3
+      ]
+    },
+    {
+      "name": "joint5",
+      "kind": "revolute",
+      "qpos_indices": [
+        4
+      ],
+      "qvel_indices": [
+        4
+      ]
+    },
+    {
+      "name": "joint6",
+      "kind": "revolute",
+      "qpos_indices": [
+        5
+      ],
+      "qvel_indices": [
+        5
+      ]
+    }
+  ],
+  "joint_groups": [
+    {
+      "group_id": "arm",
+      "joint_names": [
+        "joint1",
+        "joint2",
+        "joint3",
+        "joint4",
+        "joint5",
+        "joint6"
+      ]
+    }
+  ],
+  "actuator_mapping": [
+    {
+      "name": "motor2",
+      "joint_name": "joint2",
+      "ctrl_index": 0,
+      "effort_unit": "N*m"
+    },
+    {
+      "name": "motor1",
+      "joint_name": "joint1",
+      "ctrl_index": 1,
+      "effort_unit": "N*m"
+    },
+    {
+      "name": "motor3",
+      "joint_name": "joint3",
+      "ctrl_index": 2,
+      "effort_unit": "N*m"
+    },
+    {
+      "name": "motor4",
+      "joint_name": "joint4",
+      "ctrl_index": 3,
+      "effort_unit": "N*m"
+    },
+    {
+      "name": "motor5",
+      "joint_name": "joint5",
+      "ctrl_index": 4,
+      "effort_unit": "N*m"
+    },
+    {
+      "name": "motor6",
+      "joint_name": "joint6",
+      "ctrl_index": 5,
+      "effort_unit": "N*m"
+    }
+  ]
+}

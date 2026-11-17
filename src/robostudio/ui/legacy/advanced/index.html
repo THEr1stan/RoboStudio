@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RoboStudio · 机器人工作台</title><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/styles.css"></head>
+<body>
+<header class="app-header">
+  <a class="brand" href="/" aria-label="RoboStudio 首页"><span class="brand-mark">R</span><span>Robo<span class="brand-light">Studio</span><small>机器人仿真工作台</small></span></a>
+  <div class="header-selection"><label for="model-select">当前机械臂</label><select id="model-select"><option value="r6_compact">R6 Compact · 6 轴仿真</option><option value="r6_reach">R6 Reach · 几何预览</option></select></div>
+  <div class="header-status"><span class="status-dot" id="connection-dot"></span><span id="connection">正在连接本地引擎</span><span class="version" id="version">v0.3</span></div>
+</header>
+<div class="app-shell">
+<aside class="sidebar">
+  <div class="nav-caption">工作空间</div>
+  <nav aria-label="主导航">
+    <button class="nav-item active" data-page="workspace" aria-current="page"><span aria-hidden="true">◈</span>仿真工作台</button>
+    <button class="nav-item" data-page="records"><span aria-hidden="true">▤</span>实验记录<span class="nav-count" id="record-count">0</span></button>
+    <button class="nav-item" data-page="library"><span aria-hidden="true">⊞</span>运控算法库</button>
+  </nav>
+  <div class="sidebar-bottom"><span class="small-label">LOCAL WORKSPACE</span><strong>你的机器人实验室</strong><p>设置目标，观察运动，<br>让每次实验都有据可查。</p><div class="local-label"><span class="status-dot"></span> 本地运行 · 自动保存</div></div>
+</aside>
+<main>
+<section id="page-workspace" class="page">
+  <div class="page-heading"><div><div class="eyebrow">SIMULATION / WORKSPACE</div><h1>仿真工作台 <span class="badge" id="mode-badge">目标控制</span></h1></div><div class="mode-tabs" aria-label="工作台模式"><button class="active" data-mode="target" aria-pressed="true">目标控制</button><button data-mode="joints" aria-pressed="false">关节调姿</button><button data-mode="analysis" aria-pressed="false">运动分析</button></div></div>
+  <div class="notice" id="availability" hidden></div>
+  <div class="workspace-grid">
+    <div class="visual-column">
+      <section class="scene-panel">
+        <div class="scene-toolbar"><div><span class="live-square"></span><strong id="scene-title">R6 Compact</strong><span class="muted" id="scene-source">准备就绪</span></div><div class="view-buttons"><button data-view="perspective" title="透视">透视</button><button data-view="front" title="正视">正视</button><button data-view="top" title="俯视">俯视</button></div></div>
+        <div class="scene-wrap">
+          <canvas id="scene" tabindex="0" aria-label="机械臂三维画面：拖动旋转，滚轮缩放，也可使用方向键"></canvas>
+          <div class="scene-overlay"><span class="pill" id="motion-status">就绪</span><span class="scope-label">WORLD · 米 / 弧度</span></div>
+          <div class="scene-help">拖动旋转 · 滚轮缩放</div>
+          <div class="scene-legend"><span><i class="dot actual"></i>实际末端</span><span><i class="dot desired"></i>目标 / 参考</span></div>
+          <div class="tcp-readout"><span>末端位置 <small>m</small></span><b>X <strong id="tcp-x">—</strong></b><b>Y <strong id="tcp-y">—</strong></b><b>Z <strong id="tcp-z">—</strong></b></div>
+        </div>
+        <div class="transport"><button id="playback" class="transport-play" disabled aria-label="播放回放">▶</button><button id="restart" class="icon-button" disabled title="从头回放" aria-label="从头回放">↺</button><span id="scene-time" class="mono">0.00 / 0.00 s</span><input id="timeline" type="range" min="0" max="1" step="1" value="0" disabled aria-label="回放进度"><select id="playback-speed" aria-label="回放速度"><option value=".5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select><button id="export-run" class="text-button" disabled>导出记录 ↓</button></div>
+      </section>
+      <section class="telemetry-panel"><div class="panel-heading"><h2>运动表现</h2><span id="chart-caption" class="muted">运行后显示真实跟踪误差</span><label class="check-label"><input type="checkbox" id="show-trail" checked>轨迹</label><label class="check-label"><input type="checkbox" id="show-axes" checked>坐标轴</label></div><div class="metric-strip"><div><small>末端最终偏差</small><strong id="metric-final">— <em>mm</em></strong></div><div><small>跟踪均方根误差</small><strong id="metric-rms">— <em>mm</em></strong></div><div><small>峰值力矩</small><strong id="metric-effort">— <em>N·m</em></strong></div><div><small>仿真时长</small><strong id="metric-duration">— <em>s</em></strong></div></div><div class="chart-wrap"><canvas id="chart" aria-label="末端跟踪误差随时间的曲线"></canvas><p id="chart-empty">从右侧选择一个目标，运行你的第一次运动实验。</p></div></section>
+    </div>
+    <aside class="inspector">
+      <section id="panel-target" class="control-section">
+        <div class="panel-heading"><h2>设定末端目标</h2><span class="step-label">01 → 02 → 03</span></div><p class="intro">选择示例或输入坐标，机械臂会求解姿态并平稳移动到目标。</p>
+        <div class="field-title">快速示例 <span>可直接运行</span></div><div id="presets" class="preset-list"></div>
+        <div class="field-title">目标位置 <span>世界坐标 · m</span></div>
+        <div class="xyz-fields"><label><span class="axis-x">X</span><input id="target-x" type="number" min="-5" max="5" step="any" aria-label="目标 X 坐标"></label><label><span class="axis-y">Y</span><input id="target-y" type="number" min="-5" max="5" step="any" aria-label="目标 Y 坐标"></label><label><span class="axis-z">Z</span><input id="target-z" type="number" min="-5" max="5" step="any" aria-label="目标 Z 坐标"></label></div>
+        <details class="orientation"><summary>工具朝向 <span>角度 °</span></summary><div class="xyz-fields"><label>Roll<input id="target-roll" type="number" min="-180" max="180" step="any" aria-label="目标 Roll"></label><label>Pitch<input id="target-pitch" type="number" min="-90" max="90" step="any" aria-label="目标 Pitch"></label><label>Yaw<input id="target-yaw" type="number" min="-180" max="180" step="any" aria-label="目标 Yaw"></label></div><p class="muted">固定轴 RPY：先 X，再 Y，再 Z。</p></details>
+        <div class="form-row"><label>运动时间 <span>自动满足速度限制</span><select id="duration"><option value="2.5">2.5 秒 · 标准</option><option value="4">4 秒 · 舒缓</option><option value="6">6 秒 · 慢速</option></select></label></div>
+        <div class="form-row"><label>运动控制器<select id="controller"><option value="pd_bias">PD + 重力 / 运动偏置补偿</option><option value="pd">基础 PD · 对照用</option></select></label></div>
+        <div class="action-row"><button id="solve-target" class="secondary">仅求解姿态</button><button id="run-target" class="primary">运行到目标 <span>→</span></button></div>
+        <div id="task-message" class="task-message" role="status">准备就绪，点击「运行到目标」观看完整运动。</div>
+        <div id="solution-result" class="solution-result" hidden></div>
+      </section>
+      <section id="panel-joints" class="control-section" hidden><div class="panel-heading"><h2>关节调姿</h2><span class="badge subtle">几何预览</span></div><p class="intro">拖动滑块观察姿态。调好的姿态可作为下一次目标运动的起点。</p><div id="joint-controls"></div><div class="action-row"><button id="home-pose" class="secondary">准备姿态</button><button id="zero-pose" class="secondary">回到零位</button></div><button id="export-pose" class="wide text-button">导出当前姿态 ↓</button><p id="joint-note" class="muted">调姿用于设置几何状态，不施加物理力矩。</p></section>
+      <section id="panel-analysis" class="control-section" hidden><div class="panel-heading"><h2>末端运动分析</h2><span class="badge subtle">Jacobian</span></div><p class="intro">查看单个关节的速度如何影响当前末端。蓝色箭头表示速度方向。</p><label class="form-row">驱动关节<select id="analysis-joint"><option value="0">J1 · 底座</option><option value="1">J2 · 肩部</option><option value="2">J3 · 肘部</option><option value="3">J4 · 腕部</option><option value="4">J5 · 腕部</option><option value="5">J6 · 工具</option></select></label><label class="form-row">关节速度 · °/s<input id="analysis-rate" type="number" step="any" min="-180" max="180" value="30"></label><button id="analyze-pose" class="primary wide">分析当前姿态</button><div id="analysis-message" class="task-message" role="status">先在「关节调姿」中调整，或暂停在回放的某个位置。</div><div id="analysis-results" hidden><div class="analysis-value"><small>线速度 · m/s</small><strong id="linear-velocity"></strong></div><div class="analysis-value"><small>角速度 · rad/s</small><strong id="angular-velocity"></strong></div><details><summary>查看 6 × 6 雅可比矩阵</summary><div id="jacobian-matrix" class="matrix"></div></details><p id="analysis-verification" class="muted"></p><button id="export-analysis" class="text-button wide">导出分析 ↓</button></div></section>
+      <div class="inspector-note"><span>ⓘ</span><p id="scope-note">原创理想化六轴模型。当前演示不包含碰撞检测，轨迹按关节空间规划。</p></div>
+      <details id="run-details" class="run-details" hidden><summary>本次运行详情</summary><dl id="run-detail-list"></dl></details>
+    </aside>
+  </div>
+</section>
+<section id="page-records" class="page" hidden><div class="page-heading"><div><div class="eyebrow">EXPERIMENTS / HISTORY</div><h1>实验记录</h1><p class="page-description">每次目标运动都会自动保存。选择记录可以重新观看、检查结果或导出。</p></div><button id="refresh-records" class="secondary">刷新记录</button></div><div id="record-message" role="status"></div><div id="record-list" class="record-list"></div><div id="records-empty" class="empty-state" hidden><span>▤</span><h2>开始记录你的第一次运动</h2><p>在工作台选择一个示例并运行，记录会出现在这里。</p><button class="primary" data-open-workspace>前往工作台 →</button></div><details class="legacy-tools"><summary>基础验证实验</summary><p>保留早期重力释放与确定性测试入口，用于检查引擎和记录系统。</p><div class="action-row"><button id="gravity-test" class="secondary">运行重力释放</button><button id="fake-test" class="secondary">运行确定性测试</button></div><pre id="legacy-result"></pre></details></section>
+<section id="page-library" class="page" hidden><div class="page-heading"><div><div class="eyebrow">MOTION / ALGORITHMS</div><h1>运控算法库 <span class="badge">已接入工作台</span></h1><p class="page-description">从目标姿态到关节力矩，一条可观察、可复现的运动链路。</p></div></div><div class="pipeline"><span>目标位姿</span><b>→</b><span>DLS 逆运动学</span><b>→</b><span>五次关节轨迹</span><b>→</b><span>PD 力矩控制</span><b>→</b><span>物理仿真</span></div><div class="algorithm-grid">
+<article class="algorithm-card"><div class="algorithm-icon">FK</div><span class="library-state">已验证</span><h2>正运动学</h2><p>从六个关节角得到末端位置、朝向和各连杆姿态。</p><small>独立几何计算 · 与物理引擎交叉检查</small><button class="text-button" data-open-mode="joints">打开关节调姿 →</button></article>
+<article class="algorithm-card"><div class="algorithm-icon">J</div><span class="library-state">已验证</span><h2>几何雅可比</h2><p>把关节速度映射到末端线速度与角速度。</p><small>有限差分 + 引擎解析结果校验</small><button class="text-button" data-open-mode="analysis">打开运动分析 →</button></article>
+<article class="algorithm-card"><div class="algorithm-icon">IK</div><span class="library-state">可运行</span><h2>DLS 位姿求解</h2><p>在关节限位内求解末端位置与朝向，提供收敛状态和残差。</p><small>阻尼最小二乘 · 有限次数重启</small><button class="text-button" data-open-mode="target">设置目标 →</button></article>
+<article class="algorithm-card"><div class="algorithm-icon">S⁵</div><span class="library-state">可运行</span><h2>五次关节轨迹</h2><p>起止速度和加速度为零，自动延长时间以满足速度、加速度限制。</p><small>1.2 rad/s · 2.5 rad/s² 参考上限</small></article>
+<article class="algorithm-card"><div class="algorithm-icon">PD</div><span class="library-state">可运行</span><h2>关节力矩控制</h2><p>按关节误差输出力矩，支持重力与运动偏置补偿。</p><small>500 Hz · 显式电机映射 · 力矩限幅</small></article>
+<article class="algorithm-card"><div class="algorithm-icon">↺</div><span class="library-state">可运行</span><h2>实验与复现</h2><p>保存状态、参考与命令，并核对输入、模型和观测结果。</p><small>固定种子 · 原始数据 · 严格重放校验</small><button class="text-button" data-open-records>查看实验记录 →</button></article>
+</div><section class="comparison-panel"><div><h2>比较两种控制方式</h2><p>对同一个「前方定位」目标，使用相同轨迹、增益与时长，对比基础 PD 与偏置补偿的实际误差。</p></div><button id="compare-controllers" class="primary">运行对照实验</button><div id="comparison-result" role="status"></div></section><p class="library-note">当前完整运控链路适配 R6 Compact。R6 Reach 可在顶部切换并进行几何调姿；更多实机模型尚未接入。</p></section>
+<footer><span>RoboStudio <span id="footer-version">0.3</span> · 本地仿真工作台</span><span>仿真环境 · 无真实设备连接</span></footer>
+</main></div><div id="toast" role="status" hidden></div>
+<script type="module" src="/app.js"></script>
+</body></html>

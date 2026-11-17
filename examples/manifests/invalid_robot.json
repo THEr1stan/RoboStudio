@@ -1,0 +1,61 @@
+{
+  "api_version": "v1alpha1",
+  "family": "test_fixture",
+  "frame_id": "world",
+  "qpos_size": 2,
+  "qvel_size": 2,
+  "ctrl_size": 2,
+  "capabilities": [
+    "joint_effort"
+  ],
+  "model": {
+    "path": "fake_model.json",
+    "format": "fake-v1",
+    "sha256": "2009823304f63fd6ff5d713b1c27ed817b88e8c9c5d16c9c7b061309a4cd7127"
+  },
+  "joints": [
+    {
+      "name": "joint1",
+      "kind": "revolute",
+      "qpos_indices": [
+        0
+      ],
+      "qvel_indices": [
+        0
+      ]
+    },
+    {
+      "name": "joint2",
+      "kind": "revolute",
+      "qpos_indices": [
+        1
+      ],
+      "qvel_indices": [
+        1
+      ]
+    }
+  ],
+  "joint_groups": [
+    {
+      "group_id": "arm",
+      "joint_names": [
+        "joint1",
+        "joint2"
+      ]
+    }
+  ],
+  "actuator_mapping": [
+    {
+      "name": "motor2",
+      "joint_name": "joint2",
+      "ctrl_index": 0,
+      "effort_unit": "N*m"
+    },
+    {
+      "name": "motor1",
+      "joint_name": "joint1",
+      "ctrl_index": 1,
+      "effort_unit": "N*m"
+    }
+  ]
+}

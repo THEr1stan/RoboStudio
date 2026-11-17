@@ -1,0 +1,46 @@
+name: RoboStudio checks
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  checks:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ['3.11', '3.12', '3.15']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install locked development tools
+        run: python -m pip install -r requirements-dev.lock
+      - name: Install package
+        run: python -m pip install --no-build-isolation -e ".[physics]"
+      - name: Lint
+        run: python -m ruff check src tests
+      - name: Formatting
+        run: python -m ruff format --check src tests
+      - name: Types
+        run: python -m mypy src/robostudio
+      - name: Python contracts and integration
+        run: python -m pytest -q
+      - name: Preview kinematics
+        run: node --test tests/web/kinematics.test.mjs
+      - name: Compile Windows desktop host with pinned Microsoft SDK
+        if: runner.os == 'Windows' && matrix.python == '3.12'
+        shell: powershell
+        run: ./scripts/build/windows.ps1 -ShellOnly -RestoreDependency
+      - name: Export clean source archive
+        run: python scripts/build/source_bundle.py
+      - name: Validate robot fixture
+        run: robostudio validate robot examples/manifests/fake_arm2.json
+      - name: Deterministic smoke experiment
+        run: robostudio demo fake --seed 42
+      - name: MuJoCo numerical verification and gravity experiment
+        run: robostudio physics --seed 42

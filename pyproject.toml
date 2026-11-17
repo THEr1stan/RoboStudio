@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools==84.2.1", "wheel==0.48.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "robostudio"
+version = "0.8.0"
+description = "Reproducible robotics experiments and local simulation workbench"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md"]
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+physics = [
+    "mujoco-core==4.0.1",
+    "numpy==2.5.4; python_version >= '3.12'",
+    "numpy==2.4.6; python_version < '3.12'",
+]
+
+[project.scripts]
+robostudio = "robostudio.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+robostudio = ["py.typed", "data/*.json", "data/*.xml", "ui/studio/*", "ui/legacy/advanced/*", "ui/legacy/workcell/*", "ui/shared/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+files = ["src/robostudio"]
+

@@ -1,0 +1,98 @@
+{
+  "simulation": {
+    "api": "fded73c05829856b8db057a4f7d242a9c98caf12864ca4bbee50bbbb5680b67d",
+    "documents": "a921c395822c43bd2195c2d439a90d864a97c181b1792dab04318d14231c1c8d",
+    "lab": "bd015eb6e42e43efd8b134b4dba7a4fdfe1aed92309fd229c6288a840720f2bd",
+    "objects": "b297c4dadb22a4d1d7a05d2778ab0627516b34f43585d018862f0a13094ddf50",
+    "planning": "e0d2e5c668cd9eb565d5ddd457e12c613560e971c9db2a7ec52ba8a983cc2023",
+    "presets": "1c145bc6724297e1ead6e6cc477b71ed7b858c2cabe29443a2edaddd7ffe0147",
+    "recovery": "e27e81be2e59cae88be209222e1a9521348f6fb628b9712dcc41d524b0c409af",
+    "runtime": "87f98470cd4d574bc3d9ab21a3ea0cf82969490af59485d09844e93f339baeda",
+    "scene": "8b6f910014e3ec7f8fb85d0201d6b9e1dfcaa8fa62670b1d17cd3ab05c32d1f9",
+    "sensor": "73b9f954b72530c8027f23f8baaf453778ec02b3d0065162ae3d82d9434525aa",
+    "trajectory": "14b7292c7bc7583b5559220c3ccc1f2ff457df10f9934c0c23e597695276b670",
+    "world": "efff71d1613665d21380e810c3eca3b44512c4a2ef50a75e13c1494f6f7552c2"
+  },
+  "unchanged": {
+    "data/cell_algorithms.json": "1b1de5fcdc6acb9caf8fc99c36da0d054576a8d7d2bef820cc2ce0382df9ada7",
+    "data/dls_pose.json": "d04c02c2ff54e593bc01526f648607d488744d89f4a894358ec5766636ba481f",
+    "data/fake_arm2.json": "8cbf9ff02c60e5f834101822f7454afb7dbccb58cacb97c3c01aa74582507559",
+    "data/fake_model.json": "2009823304f63fd6ff5d713b1c27ed817b88e8c9c5d16c9c7b061309a4cd7127",
+    "data/joint_pd.json": "b43cddec89eba40d01c571977a6a44798848c267ea7eebdb5a57104ab15e2038",
+    "data/quintic.json": "f92a37eab7024c493b7e70f1b39b15cdda54d673e8ae5bcd23d9889724c7a3ba",
+    "data/r6_compact.json": "21cf52849a99d731848786336069e9d7b04383f8c0c0083c43859dd158ad5717",
+    "data/r6_compact.xml": "9842007ccad37dc2d87db0bd1f6c2815f61a0324ab31932fbdb0dbd2ddf314b1",
+    "core/contracts.py": "7d71751681b70847f37f323a4f20f8c72dee03a6d49c0fadf2695b75a7800ac9",
+    "core/errors.py": "dfafb105652f4b404db7468dee36acb60ed4d7d04f640b9c5cdeb12aed2dd892",
+    "core/manipulation.py": "3fdd0cdea893eaa23f32a40d8b03965563c70c75066a4f08c0208fed82d9268c",
+    "core/motion.py": "f6674c1b540fb16a92bfb7f41524e6487c75a03a7e7f1aa1679b96aa172302f9",
+    "core/__init__.py": "678b238c4fd6a26d457b4bb1edd762c4458c7e99a91fb10286340373ff337ecd",
+    "cell_ik.py": "88d042d441832911c11ef287d4f8f94054d206caf4e62a899c408aa314e3ad66",
+    "cell_plugins.py": "d35f26c248d0ac219ef2fe1112ff327f931e4fd2d86197935572c69e10ea4688",
+    "motion.py": "80b352b3c8bbd627481e07b071f37f165acd223c8e2504f0f5012248bea7900b",
+    "kinematics.py": "82a7e82ff2feb3321df40168de5a0989c0616d6469b9f16f855646d03cd638c9",
+    "jacobian.py": "074c93c61225764c6eaeb1c228176a0bde2e06618c660bb7fb335d91878ff4aa"
+  },
+  "ui": {
+    "app.js": {
+      "path": "ui/legacy/advanced/app.js",
+      "sha256": "b6bf613ee868e1badd03a9434bb9cb37c7c5eb37544ddce587882a2ee059f1cc"
+    },
+    "cell.css": {
+      "path": "ui/legacy/workcell/cell.css",
+      "sha256": "72bd87612ff866f01839175ed74972da9ee406033a95ff0a06296f26bc050391"
+    },
+    "cell.html": {
+      "path": "ui/legacy/workcell/cell.html",
+      "sha256": "5f537b9dcd0289e5010df175d183ed5bfbed1b07a01e894750454d7ad4467f5e"
+    },
+    "cell.js": {
+      "path": "ui/legacy/workcell/cell.js",
+      "sha256": "d7aa1da02caa8df4c03d2c3abcf8da60865af2618494d38d9d53811a0e05dee3"
+    },
+    "favicon.svg": {
+      "path": "ui/shared/favicon.svg",
+      "sha256": "330b3926e5683904e37817ba01654e8b638c4c4c136abf46032300487e673901"
+    },
+    "index.html": {
+      "path": "ui/legacy/advanced/index.html",
+      "sha256": "b1b83dcf78594b6e1312b73b723910bb6da205e875a02d993b1ca53e372a1239"
+    },
+    "kinematics.js": {
+      "path": "ui/legacy/advanced/kinematics.js",
+      "sha256": "92a73972288874b12b1297d37c5d2c59edce479be3339ab24ae8388249c9d595"
+    },
+    "renderer.js": {
+      "path": "ui/legacy/advanced/renderer.js",
+      "sha256": "4dbf7af1f7511e289ec5d4afb5104f6a158cbb80a6e1af97e6a67a7d5539138a"
+    },
+    "studio-lab.js": {
+      "path": "ui/studio/studio-lab.js",
+      "sha256": "6474737c12b78bf510c947ffc7f7d83397f079cf217b2f489cfcd237ddafdbe6"
+    },
+    "studio-renderer.js": {
+      "path": "ui/studio/studio-renderer.js",
+      "sha256": "9cd5ab24a9535589a078fd05b17bf9a9f04f13d29d40cf0a54498853f0b85581"
+    },
+    "studio-scenes.js": {
+      "path": "ui/studio/studio-scenes.js",
+      "sha256": "d78a1960ffe4eca8a6080fd0af7a5e4b061efc5681bba0086fd102ada8b64f44"
+    },
+    "studio.css": {
+      "path": "ui/studio/studio.css",
+      "sha256": "92cd2553bfa959f22e55cf1e31de8963668e7f1745a80d8c16d7acff24d640ac"
+    },
+    "studio.html": {
+      "path": "ui/studio/studio.html",
+      "sha256": "0a23d867733c10c618527f645146bd73800c9d586873fccb872727221af4df8a"
+    },
+    "studio.js": {
+      "path": "ui/studio/studio.js",
+      "sha256": "0b28468599d29aaea0133889adc14402722381dca0d526ae6f23dc54c346873c"
+    },
+    "styles.css": {
+      "path": "ui/legacy/advanced/styles.css",
+      "sha256": "1680090d3176f47df0ed1902267b7f454ab321c424e85ed40c148fa8ae99495b"
+    }
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "schema": "robostudio-scene-v1",
+  "name": "成品码垛",
+  "units": {
+    "length": "m",
+    "angle": "rad",
+    "mass": "kg"
+  },
+  "config": {
+    "robot": "gantry",
+    "seed": 42,
+    "controller": "computed",
+    "solver": "dls",
+    "damping": 0.035,
+    "planner": "rrt_connect",
+    "trajectory": "quintic",
+    "task": "stack",
+    "observation": "camera",
+    "gravity": 9.81,
+    "noise_mm": 0.0,
+    "dropout": 0.0,
+    "latency_ms": 0,
+    "retries": 1,
+    "destination": [
+      0.44,
+      0.2
+    ],
+    "objects": [
+      {
+        "color": "orange",
+        "shape": "box",
+        "xy": [
+          0.42,
+          -0.16
+        ],
+        "size": [
+          0.02,
+          0.02,
+          0.02
+        ],
+        "yaw": 0.0,
+        "mass": 0.045,
+        "friction": 1.2
+      },
+      {
+        "color": "blue",
+        "shape": "box",
+        "xy": [
+          0.32,
+          -0.23
+        ],
+        "size": [
+          0.02,
+          0.02,
+          0.02
+        ],
+        "yaw": 0.0,
+        "mass": 0.045,
+        "friction": 1.2
+      },
+      {
+        "color": "mint",
+        "shape": "box",
+        "xy": [
+          0.53,
+          -0.23
+        ],
+        "size": [
+          0.02,
+          0.02,
+          0.02
+        ],
+        "yaw": 0.0,
+        "mass": 0.045,
+        "friction": 1.2
+      }
+    ],
+    "obstacles": [
+      {
+        "xy": [
+          0.28,
+          0.22
+        ],
+        "size": [
+          0.01,
+          0.075,
+          0.03
+        ],
+        "yaw": 0.0
+      },
+      {
+        "xy": [
+          0.6,
+          0.22
+        ],
+        "size": [
+          0.01,
+          0.075,
+          0.03
+        ],
+        "yaw": 0.0
+      },
+      {
+        "xy": [
+          0.44,
+          0.3
+        ],
+        "size": [
+          0.16,
+          0.01,
+          0.03
+        ],
+        "yaw": 0.0
+      }
+    ]
+  }
+}

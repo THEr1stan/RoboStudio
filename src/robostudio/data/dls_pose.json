@@ -1,0 +1,1 @@
+{"api_version":"v1alpha1","plugin_id":"dls_pose_v1","requires_capabilities":["cartesian_ik"],"provides_capability":"cartesian_ik","parameters":{"max_iterations":{"type":"integer","minimum":1,"maximum":200},"attempts":{"type":"integer","minimum":1,"maximum":8}}}

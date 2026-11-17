@@ -1,0 +1,142 @@
+[
+  {
+    "api_version": "v1alpha1",
+    "plugin_id": "cell_dls_v1",
+    "requires_capabilities": [
+      "cartesian_ik"
+    ],
+    "provides_capability": "cartesian_ik",
+    "parameters": {
+      "damping": {
+        "type": "number",
+        "minimum": 0.001,
+        "maximum": 0.5
+      }
+    }
+  },
+  {
+    "api_version": "v1alpha1",
+    "plugin_id": "cell_pinv_v1",
+    "requires_capabilities": [
+      "cartesian_ik"
+    ],
+    "provides_capability": "cartesian_ik",
+    "parameters": {}
+  },
+  {
+    "api_version": "v1alpha1",
+    "plugin_id": "cell_transpose_v1",
+    "requires_capabilities": [
+      "cartesian_ik"
+    ],
+    "provides_capability": "cartesian_ik",
+    "parameters": {}
+  },
+  {
+    "api_version": "v1alpha1",
+    "plugin_id": "cell_computed_v1",
+    "requires_capabilities": [
+      "joint_effort",
+      "joint_trajectory"
+    ],
+    "provides_capability": "joint_effort",
+    "parameters": {}
+  },
+  {
+    "api_version": "v1alpha1",
+    "plugin_id": "cell_pd_bias_v1",
+    "requires_capabilities": [
+      "joint_effort",
+      "joint_trajectory"
+    ],
+    "provides_capability": "joint_effort",
+    "parameters": {}
+  },
+  {
+    "api_version": "v1alpha1",
+    "plugin_id": "cell_rrt_connect_v1",
+    "requires_capabilities": [
+      "collision_check"
+    ],
+    "provides_capability": "joint_path",
+    "parameters": {}
+  },
+  {
+    "api_version": "v1alpha1",
+    "plugin_id": "cell_direct_v1",
+    "requires_capabilities": [
+      "collision_check"
+    ],
+    "provides_capability": "joint_path",
+    "parameters": {}
+  },
+  {
+    "api_version": "v1alpha1",
+    "plugin_id": "cell_rgbd_components_v1",
+    "requires_capabilities": [
+      "rgbd_observation"
+    ],
+    "provides_capability": "object_pose_observation",
+    "parameters": {}
+  },
+  {
+    "api_version": "v1alpha1",
+    "plugin_id": "cell_adaptive_dls_v1",
+    "requires_capabilities": [
+      "cartesian_ik"
+    ],
+    "provides_capability": "cartesian_ik",
+    "parameters": {
+      "damping": {
+        "type": "number",
+        "minimum": 0.001,
+        "maximum": 0.5
+      }
+    }
+  },
+  {
+    "api_version": "v1alpha1",
+    "plugin_id": "cell_rrt_v1",
+    "requires_capabilities": [
+      "collision_check"
+    ],
+    "provides_capability": "joint_path",
+    "parameters": {}
+  },
+  {
+    "api_version": "v1alpha1",
+    "plugin_id": "cell_prm_v1",
+    "requires_capabilities": [
+      "collision_check"
+    ],
+    "provides_capability": "joint_path",
+    "parameters": {}
+  },
+  {
+    "api_version": "v1alpha1",
+    "plugin_id": "cell_quintic_v1",
+    "requires_capabilities": [
+      "joint_path"
+    ],
+    "provides_capability": "joint_trajectory",
+    "parameters": {}
+  },
+  {
+    "api_version": "v1alpha1",
+    "plugin_id": "cell_cubic_v1",
+    "requires_capabilities": [
+      "joint_path"
+    ],
+    "provides_capability": "joint_trajectory",
+    "parameters": {}
+  },
+  {
+    "api_version": "v1alpha1",
+    "plugin_id": "cell_trapezoidal_v1",
+    "requires_capabilities": [
+      "joint_path"
+    ],
+    "provides_capability": "joint_trajectory",
+    "parameters": {}
+  }
+]
